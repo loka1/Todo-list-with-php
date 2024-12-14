@@ -18,7 +18,7 @@ This is a simple Todo List application built with PHP and MySQL. It allows users
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/loka1/Todo-list-with-php.git
+    git clone https://github.com/yourusername/Todo-list-with-php.git
     ```
 2. Navigate to the project directory:
     ```sh
@@ -53,4 +53,4 @@ Special thanks to Dr. Reham for her guidance and support throughout the project.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GPL-3.0 License. See the [LICENSE](LICENSE) file for details.
