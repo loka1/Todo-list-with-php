@@ -18,7 +18,7 @@ This is a simple Todo List application built with PHP and MySQL. It allows users
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/Todo-list-with-php.git
+    git clone https://github.com/loka1/Todo-list-with-php.git
     ```
 2. Navigate to the project directory:
     ```sh
