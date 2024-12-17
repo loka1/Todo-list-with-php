@@ -4,10 +4,15 @@ This is a simple Todo List application built with PHP and MySQL. It allows users
 
 ## Features
 
-- **Add Task**: Users can add new tasks to their todo list.
-- **Update Task**: Users can update existing tasks.
+- **User Authentication**: Secure login and registration system to manage user access.
+- **Add Task**: Users can add new tasks to their todo list with a task name, description, and status.
+- **Update Task**: Users can update existing tasks to change the task name, description, and status.
 - **Delete Task**: Users can delete tasks that are no longer needed.
+- **Task Status**: Tasks can have different statuses such as Pending, In Progress, and Completed.
 - **Responsive Design**: The application uses Bootstrap for a responsive and modern design.
+- **Pagination**: Tasks are displayed with pagination to handle large lists efficiently.
+- **Task Count Widgets**: Visual widgets to show the count of tasks by status (Pending, In Progress, Completed).
+- **Session Management**: Secure session management to ensure user data is protected.
 
 ## Requirements
 
@@ -20,14 +25,17 @@ This is a simple Todo List application built with PHP and MySQL. It allows users
     ```sh
     git clone https://github.com/yourusername/Todo-list-with-php.git
     ```
+
 2. Navigate to the project directory:
     ```sh
     cd Todo-list-with-php
     ```
+
 3. Import the database:
     ```sh
     mysql -u username -p database_name < database.sql
     ```
+
 4. Configure the database connection in `db.php`.
 
 ## Usage
@@ -36,7 +44,16 @@ This is a simple Todo List application built with PHP and MySQL. It allows users
     ```sh
     php -S localhost:8000
     ```
+
 2. Open your browser and go to `http://localhost:8000`.
+
+## Seeding the Database
+
+To seed the database with demo data, follow these steps:
+
+1. Log in to the application.
+2. Access the `db_seed.php` script by navigating to `http://localhost:8000/db_seed.php`.
+3. The database will be seeded with demo data, and you will be redirected to the index page.
 
 ## Contributing
 
