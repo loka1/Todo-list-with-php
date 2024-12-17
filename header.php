@@ -38,7 +38,7 @@
     }
 
     .content {
-      flex: 1;
+      /* flex: 1; */
     }
     </style>
 
@@ -65,11 +65,29 @@
       <li class="nav-item">
         <a class="nav-link" href="about.php">About</a>
       </li>
+
+      <?php if(isset($_SESSION['user_id'])): ?>
+        <!-- Links for authenticated users -->
+        <li class="nav-item">
+          <a class="nav-link" href="profile.php">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
+        </li>
+      <?php else: ?>
+        <!-- Links for guests -->
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="register.php">Register</a>
+        </li>
+      <?php endif; ?>
     </ul>
   </div>
   </div>
 </nav>
-<div class="container-fluid mb-5">
+<div class="container-fluid">
 <!-- Show delete alert message if a task was successfully deleted -->
 <?php 
 if(isset($_SESSION['delete_success'])) { // Check if the 'delete_success' session variable is set
@@ -106,6 +124,21 @@ if(isset($_SESSION['add_success'])) { // Check if the 'add_success' session vari
 }
 ?>
 
+
+
+<!-- Show updated alert message if a task was successfully updateded -->
+<?php 
+if(isset($_SESSION['update_success'])) { // Check if the 'update_success' session variable is set
+?>
+  <div class="alert alert-success text-dark mx-auto mt-4" role="alert" style="width:66%;">
+    <?=$_SESSION['update_success'];?> <!-- Display the updated success message -->
+  </div>
+<?php
+  unset($_SESSION['update_success']); // Unset the 'update_success' session variable after displaying the message
+}
+?>
+
+
 <!-- Show add alert message if there was a failure in adding a task -->
 <?php 
 if(isset($_SESSION['add_failure'])) { // Check if the 'add_failure' session variable is set
@@ -119,5 +152,4 @@ if(isset($_SESSION['add_failure'])) { // Check if the 'add_failure' session vari
 ?>
 </div>
 
-<div class="content">
-    
+<div class="content mt-3"></div>

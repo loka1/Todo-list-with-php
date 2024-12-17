@@ -5,6 +5,15 @@
  */
 session_start();
 
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // If the user is not logged in, set a session message and redirect to the login page
+    $_SESSION['login_message'] = "Please log in to add a task.";
+    header("Location: login.php");
+    exit();
+}
+
+
 /*
  * Include the database connection file
  * This includes the database connection file, allowing you to use the $dbcon variable for database operations
