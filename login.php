@@ -2,6 +2,14 @@
 // Start the session
 session_start();
 
+
+// Check if the user is already logged in
+if (isset($_SESSION['user_id'])) {
+  // If the user is logged in, redirect to the index page
+  header("Location: index.php");
+  exit();
+}
+
 // Include the database connection file
 require_once "db.php";
 
