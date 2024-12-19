@@ -25,9 +25,9 @@ $error_messages = [
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
+    $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+    $confirm_password = trim(filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING));
 
     // Validate the input lengths
     if (strlen($username) < 3 || strlen($username) > 255) {

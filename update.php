@@ -46,9 +46,9 @@ $error_messages = [
 // Check if the 'updatetask' parameter is set in the POST request
 if (isset($_POST['updatetask'])) {
     // Retrieve the values from the POST request
-    $task_name = $_POST['task_name'];
-    $description = $_POST['description'];
-    $status = $_POST['status'];
+    $task_name = trim(filter_input(INPUT_POST, 'task_name', FILTER_SANITIZE_STRING));
+    $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
+    $status = trim(filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING));
     $user_id = $_SESSION['user_id'];
 
     // Validate the input lengths

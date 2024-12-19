@@ -31,6 +31,10 @@ if (isset($_POST['addtask'])) {
     $description = $_POST['description'];
     $status = $_POST['status'];
     $user_id = $_SESSION['user_id']; // Get the user_id from the session
+    // Trim and sanitize the input data
+    $task_name = trim(filter_var($task_name, FILTER_SANITIZE_STRING));
+    $description = trim(filter_var($description, FILTER_SANITIZE_STRING));
+    $status = trim(filter_var($status, FILTER_SANITIZE_STRING));
 
     // Validate the input lengths
     if (strlen($task_name) < 3 || strlen($task_name) > 255) {

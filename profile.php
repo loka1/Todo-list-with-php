@@ -43,7 +43,7 @@ $error_messages = [
 // Handle form submission for updating username or password
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['update_username'])) {
-        $new_username = $_POST['new_username'];
+        $new_username = trim(filter_input(INPUT_POST, 'new_username', FILTER_SANITIZE_STRING));
 
         // Validate new username
         if (empty($new_username)) {
@@ -82,9 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } elseif (isset($_POST['update_password'])) {
-        $current_password = $_POST['current_password'];
-        $new_password = $_POST['new_password'];
-        $confirm_password = $_POST['confirm_password'];
+        $current_password = trim(filter_input(INPUT_POST, 'current_password', FILTER_SANITIZE_STRING));
+        $new_password = trim(filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING));
+        $confirm_password = trim(filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING));
 
         // Validate input fields
         if (empty($current_password)) {
