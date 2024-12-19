@@ -2,12 +2,11 @@
 // Start the session
 session_start();
 
-
 // Check if the user is already logged in
 if (isset($_SESSION['user_id'])) {
-  // If the user is logged in, redirect to the index page
-  header("Location: index.php");
-  exit();
+    // If the user is logged in, redirect to the index page
+    header("Location: index.php");
+    exit();
 }
 
 // Include the database connection file
@@ -16,38 +15,56 @@ require_once "db.php";
 // Include the header file
 require_once "header.php";
 
+// Initialize error messages
+$error_messages = [
+    'username' => '',
+    'password' => '',
+    'login' => ''
+];
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Prepare and execute the query to check the user's credentials
-    $query = "SELECT * FROM users WHERE username = ?";
-    if ($stmt = $dbcon->prepare($query)) {
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    // Validate the input lengths
+    if (strlen($username) < 3 || strlen($username) > 255) {
+        $error_messages['username'] = "Username must be between 3 and 255 characters.";
+    }
+    if (strlen($password) < 6 || strlen($password) > 255) {
+        $error_messages['password'] = "Password must be between 6 and 255 characters.";
+    }
 
-        // Check if the user exists
-        if ($result->num_rows == 1) {
-            $user = $result->fetch_assoc();
+    // If there are no validation errors, proceed with the login
+    if (empty($error_messages['username']) && empty($error_messages['password'])) {
+        // Prepare and execute the query to check the user's credentials
+        $query = "SELECT * FROM users WHERE username = ?";
+        if ($stmt = $dbcon->prepare($query)) {
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            // Verify the password
-            if (password_verify($password, $user['password'])) {
-                // Set session variables and redirect to the index page
-                $_SESSION['user_id'] = $user['id']; // Set the user ID in the session
-                $_SESSION['username'] = $user['username'];
-                header("Location: index.php");
-                exit;
+            // Check if the user exists
+            if ($result->num_rows == 1) {
+                $user = $result->fetch_assoc();
+
+                // Verify the password
+                if (password_verify($password, $user['password'])) {
+                    // Set session variables and redirect to the index page
+                    $_SESSION['user_id'] = $user['id']; // Set the user ID in the session
+                    $_SESSION['username'] = $user['username'];
+                    header("Location: index.php");
+                    exit;
+                } else {
+                    $error_messages['login'] = "Incorrect password.";
+                }
             } else {
-                $error_message = "Incorrect password.";
+                $error_messages['login'] = "Username not found.";
             }
+            $stmt->close();
         } else {
-            $error_message = "Username not found.";
+            $error_messages['login'] = "Database query failed.";
         }
-        $stmt->close();
-    } else {
-        $error_message = "Database query failed.";
     }
 }
 ?>
@@ -76,20 +93,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
           ?>
           <!-- Display error message if set -->
-          <?php
-          if (isset($error_message)) {
-              echo '<div class="alert alert-danger" role="alert">' . $error_message . '</div>';
-          }
-          ?>
+          <?php if (!empty($error_messages['login'])): ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $error_messages['login']; ?>
+            </div>
+          <?php endif; ?>
           <!-- Login form -->
           <form action="login.php" method="post">
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" name="username" required>
+              <input type="text" class="form-control <?php echo !empty($error_messages['username']) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>" required>
+              <?php if (!empty($error_messages['username'])): ?>
+                <div class="invalid-feedback">
+                  <?php echo $error_messages['username']; ?>
+                </div>
+              <?php endif; ?>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" name="password" required>
+              <input type="password" class="form-control <?php echo !empty($error_messages['password']) ? 'is-invalid' : ''; ?>" id="password" name="password" required>
+              <?php if (!empty($error_messages['password'])): ?>
+                <div class="invalid-feedback">
+                  <?php echo $error_messages['password']; ?>
+                </div>
+              <?php endif; ?>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Login</button>
           </form>
