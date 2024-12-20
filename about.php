@@ -52,10 +52,14 @@ require_once 'header.php';
               </tr>
             </tbody>
           </table>
-          <!-- Paragraph mentioning the supervision of Dr. Reham -->
-          <p class="card-text">Under the supervision of <strong style="color: blue;">Dr. Reham</strong>.</p>
-          <!-- Paragraph giving special thanks to Dr. Reham -->
-          <p class="card-text">Special thanks to <strong style="color: blue;">Dr. Reham</strong> for her guidance and support throughout the project.</p>
+            <!-- Paragraph mentioning the supervision of Dr. Reham -->
+            <p class="card-text">Under the supervision of <strong style="color: blue;">Dr. Reham</strong>.</p>
+            <!-- Paragraph giving special thanks to Dr. Reham -->
+            <p class="card-text">Special thanks to <strong style="color: blue;">Dr. Reham</strong> for her guidance and support throughout the project.</p>
+            <!-- Additional paragraph praising Dr. Reham -->
+            <p class="card-text">Dr. Reham's expertise and dedication have been invaluable to the success of this project. Her insightful feedback and unwavering support have greatly enhanced the quality of our work.</p>
+            <!-- Another paragraph expressing gratitude to Dr. Reham -->
+            <p class="card-text">We are deeply grateful to <strong style="color: blue;">Dr. Reham</strong> for her mentorship and encouragement, which have been instrumental in our learning and development.</p>
         </div>
       </div>
     </div>
