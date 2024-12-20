@@ -17,8 +17,8 @@ require_once 'header.php';
           <h1>About Us</h1>
         </div>
         <div class="card-body">
-          <!-- Paragraph describing the purpose and functionality of the application -->
-          <p class="card-text">This application is a To-Do List that helps you manage and save your tasks efficiently. You can add, update, and delete tasks as needed, ensuring that you stay organized and on top of your responsibilities.</p>
+            <!-- Paragraph describing the purpose and functionality of the application -->
+            <p class="card-text">This application is a To-Do List that helps you manage and save your tasks efficiently. You can add, update, and delete tasks as needed, ensuring that you stay organized and on top of your responsibilities. Additionally, the application provides user authentication features, allowing you to register for an account and securely log in to access your personalized task list. Once logged in, you can edit your profile information to keep your account details up to date. The index page also includes filtering options, enabling you to easily sort and view tasks based on their status or priority, making task management even more convenient and effective.</p>
           <!-- Paragraph introducing the designers of the website -->
           <p class="card-text">This website was designed by:</p>
           <!-- Table of the designers' names -->
