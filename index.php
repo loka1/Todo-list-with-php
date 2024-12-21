@@ -142,8 +142,8 @@ $count_completed = $dbcon->query($query_completed)->fetch_assoc()['count'];
                     echo "<td>" . $serial++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['task_name']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                    echo "<td>" . date('Y-m-d', strtotime($row['created_at'])) . "</td>";
-                    echo "<td>" . date('H:i:s', strtotime($row['created_at'])) . "</td>";
+                    echo "<td>" . date('Y-m-d', strtotime($row['added_tiime'])) . "</td>";
+                    echo "<td>" . date('H:i:s', strtotime($row['added_tiime'])) . "</td>";
                     echo "<td>
                             <a href='update.php?id=" . base64_encode($row['id']) . "' class='btn btn-sm btn-primary'>Edit</a>
                             <a href='delete.php?id=" . base64_encode($row['id']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure you want to delete this task?\");'>Delete</a>
